@@ -29,7 +29,7 @@ export const links: LinksFunction = () => {
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
-  title: "Remix Template",
+  title: "Pkt Remix",
   viewport: "width=device-width,initial-scale=1",
 });
 
@@ -39,12 +39,12 @@ export default function App() {
   const context: ContextType = {};
 
   return (
-    <html lang="en">
+    <html lang="en" className="h-full bg-gray-50 antialiased">
       <head>
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="flex h-full flex-col">
         <Outlet context={context} />
         <ScrollRestoration />
         <Scripts />
