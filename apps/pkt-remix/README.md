@@ -1,6 +1,7 @@
 ## Notes
 
 - [Typed Polymorphic Components](https://blog.logrocket.com/build-strongly-typed-polymorphic-components-react-typescript/)
+- [Generic Forward Refs](https://fettblog.eu/typescript-react-generic-forward-refs/)
 - hack: ci uses .env.example
 - ignoring playwright configuration error: HTML reporter output folder clashes with the tests output folder
 

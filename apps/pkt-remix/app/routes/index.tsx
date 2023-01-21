@@ -1,3 +1,4 @@
+import { Header } from "@/components/Header";
 import type { MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => ({
@@ -8,5 +9,10 @@ export const meta: MetaFunction = () => ({
 
 export default function Index() {
   // const { session } = useOutletContext<ContextType>();
-  return <div className="mt-8 max-w-xs mx-auto font-bold text-lg">Pkt</div>;
+  // return <div className="mt-8 max-w-xs mx-auto font-bold text-lg">Pkt</div>;
+  return (
+    <>
+      <Header />
+    </>
+  )
 }
