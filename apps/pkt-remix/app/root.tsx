@@ -40,7 +40,6 @@ export default function App() {
 
   // <div> with min-h-full help register layout correctly.
   // Mimics nextjs: #__next { min-height: 100%; }
-
   return (
     <html lang="en" className="h-full bg-gray-50 antialiased">
       <head>
