@@ -119,8 +119,8 @@ function Chart({
   gridLines = 6,
   ...props
 }: Omit<React.ComponentPropsWithoutRef<"svg">, "width" | "height"> & {
-  activePointIndex: number | null;
-  onChangeActivePointIndex: (index: number | null) => void;
+  activePointIndex?: number;
+  onChangeActivePointIndex: (index?: number) => void;
   width: number;
   height: number;
   paddingX?: number;
@@ -131,7 +131,7 @@ function Chart({
   let height = totalHeight - paddingY * 2;
 
   let id = useId();
-  let svgRef = useRef<SVGElement | null>(null);
+  let svgRef = useRef<SVGSVGElement | null>(null);
   let pathRef = useRef<SVGPathElement | null>(null);
   let isInView = useInView(svgRef, { amount: 0.5, once: true });
   let pathWidth = useMotionValue(0);
@@ -156,7 +156,7 @@ function Chart({
       className={clsx(className, "overflow-visible")}
       {...(interactionEnabled
         ? {
-            onPointerLeave: () => onChangeActivePointIndex(null),
+            onPointerLeave: () => onChangeActivePointIndex(),
             onPointerMove: (event) => {
               let x = event.nativeEvent.offsetX;
               let closestPointIndex;
@@ -228,7 +228,8 @@ function Chart({
         }}
         onAnimationComplete={() => setInteractionEnabled(true)}
       />
-      {activePointIndex !== null && (
+      {/* {activePointIndex !== null && ( */}
+      {typeof activePointIndex === "number" && (
         <>
           <line
             x1="0"
@@ -253,7 +254,7 @@ function Chart({
 }
 
 function AppDemo() {
-  let [activePointIndex, setActivePointIndex] = useState<number | null>(null);
+  let [activePointIndex, setActivePointIndex] = useState<number | undefined>(undefined);
   let activePriceIndex = activePointIndex ?? prices.length - 1;
   let activeValue = prices[activePriceIndex];
   let previousValue = prices[activePriceIndex - 1];
