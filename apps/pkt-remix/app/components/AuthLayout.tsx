@@ -1,8 +1,8 @@
-import Link from 'next/link'
+import { Logo } from "@/components/Logo";
+import { Link } from "@remix-run/react";
+import React from "react";
 
-import { Logo } from '@/components/Logo'
-
-function BackgroundIllustration(props) {
+function BackgroundIllustration(props: React.ComponentPropsWithoutRef<"svg">) {
   return (
     <svg
       viewBox="0 0 1090 1090"
@@ -16,14 +16,21 @@ function BackgroundIllustration(props) {
       <circle cx={545} cy={545} r="416.5" />
       <circle cx={545} cy={545} r="352.5" />
     </svg>
-  )
+  );
 }
 
-export function AuthLayout({ title, subtitle, children }) {
+export function AuthLayout({
+  title,
+  subtitle,
+  children,
+}: React.PropsWithChildren<{
+  title: string;
+  subtitle: React.ReactNode;
+}>) {
   return (
     <main className="flex min-h-full overflow-hidden pt-16 sm:py-28">
       <div className="mx-auto flex w-full max-w-2xl flex-col px-4 sm:px-6">
-        <Link href="/" aria-label="Home">
+        <Link to="/" aria-label="Home">
           <Logo className="mx-auto h-10 w-auto" />
         </Link>
         <div className="relative mt-12 sm:mt-16">
@@ -44,5 +51,5 @@ export function AuthLayout({ title, subtitle, children }) {
         </div>
       </div>
     </main>
-  )
+  );
 }
