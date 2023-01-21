@@ -1,14 +1,14 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import { Image } from "@/components/Image";
+import { Link } from "@remix-run/react";
+import { Button } from "@/components/Button";
+import { Container } from "@/components/Container";
+import { TextField } from "@/components/Fields";
+import { Logomark } from "@/components/Logo";
+import { NavLinks } from "@/components/NavLinks";
+import qrCode from "@/images/qr-code.svg";
+import React from "react";
 
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
-import { TextField } from '@/components/Fields'
-import { Logomark } from '@/components/Logo'
-import { NavLinks } from '@/components/NavLinks'
-import qrCode from '@/images/qr-code.svg'
-
-function QrCodeBorder(props) {
+function QrCodeBorder(props: React.ComponentPropsWithoutRef<"svg">) {
   return (
     <svg viewBox="0 0 96 96" fill="none" aria-hidden="true" {...props}>
       <path
@@ -17,7 +17,7 @@ function QrCodeBorder(props) {
         strokeLinecap="round"
       />
     </svg>
-  )
+  );
 }
 
 export function Footer() {
@@ -44,7 +44,7 @@ export function Footer() {
             </div>
             <div className="ml-8 lg:w-64">
               <p className="text-base font-semibold text-gray-900">
-                <Link href="#">
+                <Link to="#">
                   <span className="absolute inset-0 sm:rounded-2xl" />
                   Download the app
                 </Link>
@@ -76,5 +76,5 @@ export function Footer() {
         </div>
       </Container>
     </footer>
-  )
+  );
 }

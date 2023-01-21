@@ -1,72 +1,88 @@
-import { useState } from 'react'
-import { RadioGroup } from '@headlessui/react'
-import clsx from 'clsx'
+import React, { useState } from "react";
+import { RadioGroup } from "@headlessui/react";
+import clsx from "clsx";
 
-import { Button } from '@/components/Button'
-import { Container } from '@/components/Container'
-import { Logomark } from '@/components/Logo'
+import { Button } from "@/components/Button";
+import { Container } from "@/components/Container";
+import { Logomark } from "@/components/Logo";
 
-const plans = [
+type PlanProps = {
+  name: string;
+  price: {
+    Monthly: string;
+    Annually: string;
+  };
+  description: string;
+  button: {
+    label: string;
+    href: string;
+  };
+  featured?: boolean;
+  features: string[];
+  logomarkClassName: string;
+};
+
+const plans: PlanProps[] = [
   {
-    name: 'Starter',
+    name: "Starter",
     featured: false,
-    price: { Monthly: '$0', Annually: '$0' },
+    price: { Monthly: "$0", Annually: "$0" },
     description:
-      'You’re new to investing but want to do it right. Get started for free.',
+      "You’re new to investing but want to do it right. Get started for free.",
     button: {
-      label: 'Get started for free',
-      href: '/register',
+      label: "Get started for free",
+      href: "/register",
     },
     features: [
-      'Commission-free trading',
-      'Multi-layered encryption',
-      'One tip every day',
-      'Invest up to $1,500 each month',
+      "Commission-free trading",
+      "Multi-layered encryption",
+      "One tip every day",
+      "Invest up to $1,500 each month",
     ],
-    logomarkClassName: 'fill-gray-300',
+    logomarkClassName: "fill-gray-300",
   },
   {
-    name: 'Investor',
+    name: "Investor",
     featured: false,
-    price: { Monthly: '$7', Annually: '$70' },
+    price: { Monthly: "$7", Annually: "$70" },
     description:
-      'You’ve been investing for a while. Invest more and grow your wealth faster.',
+      "You’ve been investing for a while. Invest more and grow your wealth faster.",
     button: {
-      label: 'Subscribe',
-      href: '/register',
+      label: "Subscribe",
+      href: "/register",
     },
     features: [
-      'Commission-free trading',
-      'Multi-layered encryption',
-      'One tip every hour',
-      'Invest up to $15,000 each month',
-      'Basic transaction anonymization',
+      "Commission-free trading",
+      "Multi-layered encryption",
+      "One tip every hour",
+      "Invest up to $15,000 each month",
+      "Basic transaction anonymization",
     ],
-    logomarkClassName: 'fill-gray-500',
+    logomarkClassName: "fill-gray-500",
   },
   {
-    name: 'VIP',
+    name: "VIP",
     featured: true,
-    price: { Monthly: '$199', Annually: '$1,990' },
+    price: { Monthly: "$199", Annually: "$1,990" },
     description:
-      'You’ve got a huge amount of assets but it’s not enough. To the moon.',
+      "You’ve got a huge amount of assets but it’s not enough. To the moon.",
     button: {
-      label: 'Subscribe',
-      href: '/register',
+      label: "Subscribe",
+      href: "/register",
     },
     features: [
-      'Commission-free trading',
-      'Multi-layered encryption',
-      'Real-time tip notifications',
-      'No investment limits',
-      'Advanced transaction anonymization',
-      'Automated tax-loss harvesting',
+      "Commission-free trading",
+      "Multi-layered encryption",
+      "Real-time tip notifications",
+      "No investment limits",
+      "Advanced transaction anonymization",
+      "Automated tax-loss harvesting",
     ],
-    logomarkClassName: 'fill-cyan-500',
+    logomarkClassName: "fill-cyan-500",
   },
-]
+];
 
-function CheckIcon(props) {
+function CheckIcon(props: React.ComponentPropsWithoutRef<"svg">) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path
@@ -84,7 +100,7 @@ function CheckIcon(props) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
 function Plan({
@@ -96,27 +112,27 @@ function Plan({
   featured = false,
   activePeriod,
   logomarkClassName,
-}) {
+}: PlanProps & { activePeriod: string }) {
   return (
     <section
       className={clsx(
-        'flex flex-col overflow-hidden rounded-3xl p-6 shadow-lg shadow-gray-900/5',
-        featured ? 'order-first bg-gray-900 lg:order-none' : 'bg-white'
+        "flex flex-col overflow-hidden rounded-3xl p-6 shadow-lg shadow-gray-900/5",
+        featured ? "order-first bg-gray-900 lg:order-none" : "bg-white"
       )}
     >
       <h3
         className={clsx(
-          'flex items-center text-sm font-semibold',
-          featured ? 'text-white' : 'text-gray-900'
+          "flex items-center text-sm font-semibold",
+          featured ? "text-white" : "text-gray-900"
         )}
       >
-        <Logomark className={clsx('h-6 w-6 flex-none', logomarkClassName)} />
+        <Logomark className={clsx("h-6 w-6 flex-none", logomarkClassName)} />
         <span className="ml-4">{name}</span>
       </h3>
       <p
         className={clsx(
-          'relative mt-5 flex text-3xl tracking-tight',
-          featured ? 'text-white' : 'text-gray-900'
+          "relative mt-5 flex text-3xl tracking-tight",
+          featured ? "text-white" : "text-gray-900"
         )}
       >
         {price.Monthly === price.Annually ? (
@@ -124,21 +140,21 @@ function Plan({
         ) : (
           <>
             <span
-              aria-hidden={activePeriod === 'Annually'}
+              aria-hidden={activePeriod === "Annually"}
               className={clsx(
-                'transition duration-300',
-                activePeriod === 'Annually' &&
-                  'pointer-events-none translate-x-6 select-none opacity-0'
+                "transition duration-300",
+                activePeriod === "Annually" &&
+                  "pointer-events-none translate-x-6 select-none opacity-0"
               )}
             >
               {price.Monthly}
             </span>
             <span
-              aria-hidden={activePeriod === 'Monthly'}
+              aria-hidden={activePeriod === "Monthly"}
               className={clsx(
-                'absolute left-0 top-0 transition duration-300',
-                activePeriod === 'Monthly' &&
-                  'pointer-events-none -translate-x-6 select-none opacity-0'
+                "absolute left-0 top-0 transition duration-300",
+                activePeriod === "Monthly" &&
+                  "pointer-events-none -translate-x-6 select-none opacity-0"
               )}
             >
               {price.Annually}
@@ -148,28 +164,28 @@ function Plan({
       </p>
       <p
         className={clsx(
-          'mt-3 text-sm',
-          featured ? 'text-gray-300' : 'text-gray-700'
+          "mt-3 text-sm",
+          featured ? "text-gray-300" : "text-gray-700"
         )}
       >
         {description}
       </p>
       <div className="order-last mt-6">
         <ul
-          role="list"
+          // role="list"
           className={clsx(
-            '-my-2 divide-y text-sm',
+            "-my-2 divide-y text-sm",
             featured
-              ? 'divide-gray-800 text-gray-300'
-              : 'divide-gray-200 text-gray-700'
+              ? "divide-gray-800 text-gray-300"
+              : "divide-gray-200 text-gray-700"
           )}
         >
           {features.map((feature) => (
             <li key={feature} className="flex py-2">
               <CheckIcon
                 className={clsx(
-                  'h-6 w-6 flex-none',
-                  featured ? 'text-white' : 'text-cyan-500'
+                  "h-6 w-6 flex-none",
+                  featured ? "text-white" : "text-cyan-500"
                 )}
               />
               <span className="ml-4">{feature}</span>
@@ -179,18 +195,18 @@ function Plan({
       </div>
       <Button
         href={button.href}
-        color={featured ? 'cyan' : 'gray'}
+        color={featured ? "cyan" : "gray"}
         className="mt-6"
         aria-label={`Get started with the ${name} plan for ${price}`}
       >
         {button.label}
       </Button>
     </section>
-  )
+  );
 }
 
 export function Pricing() {
-  let [activePeriod, setActivePeriod] = useState('Monthly')
+  let [activePeriod, setActivePeriod] = useState("Monthly");
 
   return (
     <section
@@ -219,15 +235,15 @@ export function Pricing() {
               onChange={setActivePeriod}
               className="grid grid-cols-2"
             >
-              {['Monthly', 'Annually'].map((period) => (
+              {["Monthly", "Annually"].map((period) => (
                 <RadioGroup.Option
                   key={period}
                   value={period}
                   className={clsx(
-                    'cursor-pointer border border-gray-300 py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-sm text-gray-700 outline-2 outline-offset-2 transition-colors hover:border-gray-400',
-                    period === 'Monthly'
-                      ? 'rounded-l-lg'
-                      : '-ml-px rounded-r-lg'
+                    "cursor-pointer border border-gray-300 py-[calc(theme(spacing.2)-1px)] px-[calc(theme(spacing.3)-1px)] text-sm text-gray-700 outline-2 outline-offset-2 transition-colors hover:border-gray-400",
+                    period === "Monthly"
+                      ? "rounded-l-lg"
+                      : "-ml-px rounded-r-lg"
                   )}
                 >
                   {period}
@@ -237,18 +253,18 @@ export function Pricing() {
             <div
               aria-hidden="true"
               className={clsx(
-                'pointer-events-none absolute inset-0 z-10 grid grid-cols-2 overflow-hidden rounded-lg bg-cyan-500 transition-all duration-300',
-                activePeriod === 'Monthly'
-                  ? '[clip-path:inset(0_50%_0_0)]'
-                  : '[clip-path:inset(0_0_0_calc(50%-1px))]'
+                "pointer-events-none absolute inset-0 z-10 grid grid-cols-2 overflow-hidden rounded-lg bg-cyan-500 transition-all duration-300",
+                activePeriod === "Monthly"
+                  ? "[clip-path:inset(0_50%_0_0)]"
+                  : "[clip-path:inset(0_0_0_calc(50%-1px))]"
               )}
             >
-              {['Monthly', 'Annually'].map((period) => (
+              {["Monthly", "Annually"].map((period) => (
                 <div
                   key={period}
                   className={clsx(
-                    'py-2 text-center text-sm font-semibold text-white [&:not(:focus-visible)]:focus:outline-none',
-                    period === 'Annually' && '-ml-px'
+                    "py-2 text-center text-sm font-semibold text-white [&:not(:focus-visible)]:focus:outline-none",
+                    period === "Annually" && "-ml-px"
                   )}
                 >
                   {period}
@@ -265,5 +281,5 @@ export function Pricing() {
         </div>
       </Container>
     </section>
-  )
+  );
 }

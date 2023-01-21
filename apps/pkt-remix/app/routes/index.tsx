@@ -5,6 +5,9 @@ import type { MetaFunction } from "@remix-run/node";
 import { SecondaryFeatures } from "@/components/SecondaryFeatures";
 import { CallToAction } from "@/components/CallToAction";
 import { Reviews } from "@/components/Reviews";
+import { Pricing } from "@/components/Pricing";
+import { Faqs } from "@/components/Faqs";
+import { Footer } from "@/components/Footer";
 
 export const meta: MetaFunction = () => ({
   title: "Pocket - Invest at the perfect time.",
@@ -13,8 +16,6 @@ export const meta: MetaFunction = () => ({
 });
 
 export default function Index() {
-  // const { session } = useOutletContext<ContextType>();
-  // return <div className="mt-8 max-w-xs mx-auto font-bold text-lg">Pkt</div>;
   return (
     <>
       <Header />
@@ -24,10 +25,10 @@ export default function Index() {
         <SecondaryFeatures />
         <CallToAction />
         <Reviews />
-        {/* <Pricing /> */}
-        {/* <Faqs /> */}
+        <Pricing />
+        <Faqs />
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }
