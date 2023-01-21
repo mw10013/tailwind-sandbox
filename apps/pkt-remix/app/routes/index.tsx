@@ -3,9 +3,9 @@ import type { MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => ({
   title: "Pocket - Invest at the perfect time.",
-  description: "By leveraging insights from our network of industry insiders, you’ll know exactly when to buy to maximize profit, and exactly when to sell to avoid painful losses.",
+  description:
+    "By leveraging insights from our network of industry insiders, you’ll know exactly when to buy to maximize profit, and exactly when to sell to avoid painful losses.",
 });
-
 
 export default function Index() {
   // const { session } = useOutletContext<ContextType>();
@@ -13,6 +13,16 @@ export default function Index() {
   return (
     <>
       <Header />
+      <main>
+        {/* <Hero />
+      <PrimaryFeatures />
+      <SecondaryFeatures />
+      <CallToAction />
+      <Reviews />
+      <Pricing />
+      <Faqs /> */}
+      </main>
+      {/* <Footer /> */}
     </>
-  )
+  );
 }
