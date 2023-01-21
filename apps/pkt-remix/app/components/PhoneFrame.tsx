@@ -1,7 +1,7 @@
-import clsx from 'clsx'
-
-import frame from '@/images/phone-frame.svg'
-import React from 'react'
+import clsx from "clsx";
+import { Image } from "@/components/Image";
+import frame from "@/images/phone-frame.svg";
+import React from "react";
 
 function PlaceholderFrame(props: React.ComponentPropsWithoutRef<"svg">) {
   return (
@@ -14,7 +14,7 @@ function PlaceholderFrame(props: React.ComponentPropsWithoutRef<"svg">) {
       />
       <rect x="154" y="29" width="56" height="5" rx="2.5" fill="#D4D4D4" />
     </svg>
-  )
+  );
 }
 
 export function PhoneFrame({
@@ -22,9 +22,10 @@ export function PhoneFrame({
   children,
   priority = false,
   ...props
-}: React.ComponentPropsWithoutRef<"div">) {
+}: React.ComponentPropsWithoutRef<"div"> &
+  Pick<Parameters<typeof Image>[0], "priority">) {
   return (
-    <div className={clsx('relative aspect-[366/729]', className)} {...props}>
+    <div className={clsx("relative aspect-[366/729]", className)} {...props}>
       <div className="absolute inset-y-[calc(1/729*100%)] right-[calc(5/729*100%)] left-[calc(7/729*100%)] rounded-[calc(58/366*100%)/calc(58/729*100%)] shadow-2xl" />
       <div className="absolute top-[calc(23/729*100%)] left-[calc(23/366*100%)] grid h-[calc(686/729*100%)] w-[calc(318/366*100%)] transform grid-cols-1 overflow-hidden bg-gray-900 pt-[calc(23/318*100%)]">
         {children}
@@ -38,5 +39,5 @@ export function PhoneFrame({
         priority={priority}
       />
     </div>
-  )
+  );
 }
