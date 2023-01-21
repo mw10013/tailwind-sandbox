@@ -44,7 +44,6 @@ importers:
 
   apps/pkt-remix:
     specifiers:
-      '@faker-js/faker': ^7.6.0
       '@headlessui/react': 1.7.7
       '@heroicons/react': 2.0.13
       '@playwright/test': ^1.29.2
@@ -75,9 +74,7 @@ importers:
       prettier-plugin-tailwindcss: 0.2.1
       react: ^18.2.0
       react-dom: ^18.2.0
-      react-router: ^6.7.0
       tailwindcss: 3.2.4
-      tiny-invariant: 1.3.1
       typescript: ^4.9.4
       use-debounce: ^9.0.3
       vitest: ^0.27.3
@@ -92,10 +89,8 @@ importers:
       framer-motion: 8.5.0_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      tiny-invariant: 1.3.1
       use-debounce: 9.0.3_react@18.2.0
     devDependencies:
-      '@faker-js/faker': 7.6.0
       '@playwright/test': 1.29.2
       '@remix-run/dev': 1.11.1_kbsvfewv4jwrmiyw4esgzjg2te
       '@remix-run/eslint-config': 1.11.1_wvykjhgtukofhefoe5m2qcm46i
@@ -116,7 +111,6 @@ importers:
       npm-run-all: 4.1.5
       prettier: 2.8.3
       prettier-plugin-tailwindcss: 0.2.1_prettier@2.8.3
-      react-router: 6.7.0_react@18.2.0
       tailwindcss: 3.2.4
       typescript: 4.9.4
       vitest: 0.27.3_jsdom@21.0.0
@@ -1978,11 +1972,6 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /@faker-js/faker/7.6.0:
-    resolution: {integrity: sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==}
-    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
     dev: true
 
   /@gar/promisify/1.1.3:
@@ -9895,6 +9884,7 @@ packages:
     dependencies:
       '@remix-run/router': 1.3.0
       react: 18.2.0
+    dev: false
 
   /react/18.2.0:
     resolution: {integrity: sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==}
@@ -11077,10 +11067,6 @@ packages:
       globalyzer: 0.1.0
       globrex: 0.1.2
     dev: true
-
-  /tiny-invariant/1.3.1:
-    resolution: {integrity: sha512-AD5ih2NlSssTCwsMznbvwMZpJ1cbhkGd2uueNxzv2jDlEeZdU04JQfRnggJQ8DrcVBGjAsCKwFBbDlVNtEMlzw==}
-    dev: false
 
   /tinybench/2.3.1:
     resolution: {integrity: sha512-hGYWYBMPr7p4g5IarQE7XhlyWveh1EKhy4wUBS1LrHXCKYgvz+4/jCqgmJqZxxldesn05vccrtME2RLLZNW7iA==}
