@@ -1,4 +1,5 @@
 import { Header } from "@/components/Header";
+import { PrimaryFeatures } from "@/components/PrimaryFeatures";
 import { Hero } from "@/components/Hero";
 import type { MetaFunction } from "@remix-run/node";
 
@@ -16,7 +17,7 @@ export default function Index() {
       <Header />
       <main>
         <Hero />
-        {/* <PrimaryFeatures /> */}
+        <PrimaryFeatures />
         {/* <SecondaryFeatures /> */}
         {/* <CallToAction /> */}
         {/* <Reviews /> */}
