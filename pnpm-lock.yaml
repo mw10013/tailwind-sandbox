@@ -64,28 +64,23 @@ importers:
       '@types/testing-library__jest-dom': ^5.14.5
       '@vercel/node': ^2.8.12
       '@vitejs/plugin-react': ^3.0.1
-      autoprefixer: ^10.4.12
       clsx: 1.2.1
       dotenv: ^16.0.3
       eslint: ^8.32.0
       eslint-config-prettier: 8.6.0
-      focus-visible: ^5.2.0
       framer-motion: ^6.5.1
       jsdom: ^21.0.0
       npm-run-all: 4.1.5
-      postcss-focus-visible: ^6.0.4
       prettier: 2.8.3
       prettier-plugin-tailwindcss: 0.2.1
       react: ^18.2.0
       react-dom: ^18.2.0
       react-router: ^6.6.2
-      remeda: 1.6.0
       tailwindcss: 3.2.4
       tiny-invariant: 1.3.1
       typescript: ^4.9.4
       use-debounce: ^8.0.4
       vitest: ^0.27.2
-      zod: 3.20.2
     dependencies:
       '@headlessui/react': 1.7.7_biqbaboplfbrettd7655fr4n2y
       '@heroicons/react': 2.0.13_react@18.2.0
@@ -94,14 +89,11 @@ importers:
       '@remix-run/vercel': 1.10.1_vi7vfq35vjc22oihhc3chf3thi
       '@vercel/node': 2.8.12
       clsx: 1.2.1
-      focus-visible: 5.2.0
       framer-motion: 6.5.1_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      remeda: 1.6.0
       tiny-invariant: 1.3.1
       use-debounce: 8.0.4_react@18.2.0
-      zod: 3.20.2
     devDependencies:
       '@faker-js/faker': 7.6.0
       '@playwright/test': 1.29.2
@@ -117,13 +109,11 @@ importers:
       '@types/react-dom': 18.0.10
       '@types/testing-library__jest-dom': 5.14.5
       '@vitejs/plugin-react': 3.0.1
-      autoprefixer: 10.4.13
       dotenv: 16.0.3
       eslint: 8.32.0
       eslint-config-prettier: 8.6.0_eslint@8.32.0
       jsdom: 21.0.0
       npm-run-all: 4.1.5
-      postcss-focus-visible: 6.0.4
       prettier: 2.8.3
       prettier-plugin-tailwindcss: 0.2.1_prettier@2.8.3
       react-router: 6.6.2_react@18.2.0
@@ -3485,6 +3475,7 @@ packages:
       normalize-range: 0.1.2
       picocolors: 1.0.0
       postcss-value-parser: 4.2.0
+    dev: false
 
   /available-typed-arrays/1.0.5:
     resolution: {integrity: sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw==}
@@ -6053,6 +6044,7 @@ packages:
 
   /fraction.js/4.2.0:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
+    dev: false
 
   /fragment-cache/0.2.1:
     resolution: {integrity: sha512-GMBAbW9antB8iZRHLoGw0b3HANt57diZYFO/HL1JGIC1MjKrdmhxvrJbupnVvpys0zsz7yBApXdQyfepKly2kA==}
@@ -8710,6 +8702,7 @@ packages:
   /normalize-range/0.1.2:
     resolution: {integrity: sha512-bdok/XvKII3nUpklnV6P2hxtMNrCboOjAcyBuQnWEhO665FwrSNRxU+AqpsyvO6LgGYPspN+lu5CLtw4jPRKNA==}
     engines: {node: '>=0.10.0'}
+    dev: false
 
   /normalize-url/4.5.1:
     resolution: {integrity: sha512-9UZCFRHQdNrfTpGg8+1INIg93B6zE0aXMVFkw1WFwvO4SlZywU6aLg5Of0Ap/PgcbSw4LNxvMWXMeugwMCX0AA==}
@@ -9286,6 +9279,7 @@ packages:
       postcss: ^8.4
     dependencies:
       postcss-selector-parser: 6.0.11
+    dev: false
 
   /postcss-import/14.1.0_postcss@8.4.21:
     resolution: {integrity: sha512-flwI+Vgm4SElObFVPpTIT7SU7R3qk2L7PyduMcokiaVKuWv9d/U+Gm/QAd8NDLuykTWTkcrjOeD2Pp1rMeBTGw==}
@@ -9902,10 +9896,6 @@ packages:
       mdast-util-to-hast: 11.3.0
       unified: 10.1.2
     dev: true
-
-  /remeda/1.6.0:
-    resolution: {integrity: sha512-2NBGJZrwWeqAY+Tzo66FyBYyW0CmMFh0tCg97T8G76krXmI45j/EK1oy+5WYrl2j7oPbgRkN6loGIiliiquvxg==}
-    dev: false
 
   /remote-origin-url/1.0.0:
     resolution: {integrity: sha512-xHDM6IBqivpiQ1e4WOuFpM/T6rbzA/WBsu+3WLtgPOhHyjA0nYlijV3NprlTb4FcXlQ5+Q+z174sQ1NnUF5FwA==}
@@ -11883,10 +11873,6 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
-
-  /zod/3.20.2:
-    resolution: {integrity: sha512-1MzNQdAvO+54H+EaK5YpyEy0T+Ejo/7YLHS93G3RnYWh5gaotGHwGeN/ZO687qEDU2y4CdStQYXVHIgrUl5UVQ==}
-    dev: false
 
   /zwitch/2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
