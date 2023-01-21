@@ -2,7 +2,6 @@ import { forwardRef } from "react";
 import clsx from "clsx";
 import { Link } from "@remix-run/react";
 import React from "react";
-import { T } from "vitest/dist/types-d97c72c7";
 
 const baseStyles = {
   solid:
