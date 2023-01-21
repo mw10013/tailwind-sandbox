@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import clsx from "clsx";
 import { Link } from "@remix-run/react";
 import React from "react";
+import { T } from "vitest/dist/types-d97c72c7";
 
 const baseStyles = {
   solid:
@@ -18,10 +19,10 @@ const variantStyles = {
     gray: "bg-gray-800 text-white hover:bg-gray-900 active:bg-gray-800 active:text-white/80",
   },
   outline: {
-    pink: "border-gray-300 text-gray-700 hover:border-gray-400 active:bg-gray-100 active:text-gray-700/80",
+    gray: "border-gray-300 text-gray-700 hover:border-gray-400 active:bg-gray-100 active:text-gray-700/80",
   },
 };
-
+/*
 type TProps<
   Variant extends keyof typeof variantStyles,
   Color extends keyof (typeof variantStyles)[Variant]
@@ -46,6 +47,16 @@ foo({ variant: "outline", color: "gray" });
 foo({ variant: "outline", color: "cyan" });
 foo({ color: "cyan" });
 foo({ color: "gray" });
+*/
+
+// function forwardRef<T, P = {}>(render: ForwardRefRenderFunction<T, P>): ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<T>>;
+
+// https://fettblog.eu/typescript-react-generic-forward-refs/
+// declare module "react" {
+//   function forwardRef<T, P = {}>(
+//     render: (props: P, ref: React.Ref<T>) => React.ReactElement | null
+//   ): (props: P & React.RefAttributes<T>) => React.ReactElement | null;
+// }
 
 type ButtonRef<Href extends string | undefined> = Href extends string
   ? Parameters<typeof Link>[0]["ref"]
@@ -53,12 +64,16 @@ type ButtonRef<Href extends string | undefined> = Href extends string
 
 type ButtonProps<
   Href extends string | undefined,
-  Variant extends keyof typeof variantStyles,
-  Color extends keyof (typeof variantStyles)[Variant],
+  // Variant extends keyof typeof variantStyles,
+  // Color extends keyof (typeof variantStyles)[Variant],
   Props = {
     href?: Href;
-    variant?: Variant;
-    color?: Color;
+    // variant?: Variant;
+    variant?: keyof typeof variantStyles;
+    // color?: Color;
+    color?:
+      | keyof (typeof variantStyles)["solid"]
+      | keyof (typeof variantStyles)["outline"];
     className?: string;
   },
   Component = Href extends string
@@ -68,26 +83,16 @@ type ButtonProps<
   Omit<Component, keyof Props> & { ref?: ButtonRef<Href> };
 
 export const Button = forwardRef(function Button<
-  Href extends string | undefined,
-  Variant extends keyof typeof variantStyles,
-  Color extends keyof (typeof variantStyles)[Variant],
->(
-  {
-    // variant = "solid",
-    variant,
-    // color = "gray",
-    color,
-    className,
-    href,
-    ...props
-  }: ButtonProps<Href, Variant, Color>,
-  ref?: ButtonRef<Href>
-) {
-  // className = clsx(
-  //   baseStyles[variant],
-  //   variantStyles[variant][color],
-  //   className
-  // );
+  Href extends string | undefined
+  // Variant extends keyof typeof variantStyles,
+  // Color extends keyof (typeof variantStyles)[Variant]
+>({ variant = "solid", color = "gray", className, href, ...props }: ButtonProps<Href>, ref?: ButtonRef<Href>) {
+  className = clsx(
+    baseStyles[variant],
+    // @ts-ignore TODO: fix types
+    variantStyles[variant][color],
+    className
+  );
 
   return href ? (
     // eslint-disable-next-line jsx-a11y/anchor-has-content
