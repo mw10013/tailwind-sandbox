@@ -38,6 +38,9 @@ export default function App() {
   const { data } = useLoaderData<typeof loader>();
   const context: ContextType = {};
 
+  // <div> with min-h-full help register layout correctly.
+  // Mimics nextjs: #__next { min-height: 100%; }
+
   return (
     <html lang="en" className="h-full bg-gray-50 antialiased">
       <head>
@@ -45,7 +48,9 @@ export default function App() {
         <Links />
       </head>
       <body className="flex h-full flex-col">
-        <Outlet context={context} />
+        <div className="min-h-full">
+          <Outlet context={context} />
+        </div>
         <ScrollRestoration />
         <Scripts />
         <LiveReload />
