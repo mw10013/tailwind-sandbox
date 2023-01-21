@@ -220,11 +220,13 @@ function Chart({
         transition={{ duration: 1 }}
         {...(isInView ? { stroke: "#06b6d4", animate: { pathLength: 1 } } : {})}
         onUpdate={({ pathLength }) => {
-          pathWidth.set(
-            pathRef.current.getPointAtLength(
-              pathLength * pathRef.current.getTotalLength()
-            ).x
-          );
+          if (pathRef.current) {
+            pathWidth.set(
+              pathRef.current.getPointAtLength(
+                Number(pathLength) * pathRef.current.getTotalLength()
+              ).x
+            );
+          }
         }}
         onAnimationComplete={() => setInteractionEnabled(true)}
       />
@@ -254,7 +256,9 @@ function Chart({
 }
 
 function AppDemo() {
-  let [activePointIndex, setActivePointIndex] = useState<number | undefined>(undefined);
+  let [activePointIndex, setActivePointIndex] = useState<number | undefined>(
+    undefined
+  );
   let activePriceIndex = activePointIndex ?? prices.length - 1;
   let activeValue = prices[activePriceIndex];
   let previousValue = prices[activePriceIndex - 1];

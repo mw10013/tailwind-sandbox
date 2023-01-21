@@ -1,4 +1,5 @@
 import { Header } from "@/components/Header";
+import { Hero } from "@/components/Hero";
 import type { MetaFunction } from "@remix-run/node";
 
 export const meta: MetaFunction = () => ({
@@ -14,13 +15,13 @@ export default function Index() {
     <>
       <Header />
       <main>
-        {/* <Hero />
-      <PrimaryFeatures />
-      <SecondaryFeatures />
-      <CallToAction />
-      <Reviews />
-      <Pricing />
-      <Faqs /> */}
+        <Hero />
+        {/* <PrimaryFeatures /> */}
+        {/* <SecondaryFeatures /> */}
+        {/* <CallToAction /> */}
+        {/* <Reviews /> */}
+        {/* <Pricing /> */}
+        {/* <Faqs /> */}
       </main>
       {/* <Footer /> */}
     </>
