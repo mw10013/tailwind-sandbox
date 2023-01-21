@@ -3,6 +3,7 @@ import { PrimaryFeatures } from "@/components/PrimaryFeatures";
 import { Hero } from "@/components/Hero";
 import type { MetaFunction } from "@remix-run/node";
 import { SecondaryFeatures } from "@/components/SecondaryFeatures";
+import { CallToAction } from "@/components/CallToAction";
 
 export const meta: MetaFunction = () => ({
   title: "Pocket - Invest at the perfect time.",
@@ -20,7 +21,7 @@ export default function Index() {
         <Hero />
         <PrimaryFeatures />
         <SecondaryFeatures />
-        {/* <CallToAction /> */}
+        <CallToAction />
         {/* <Reviews /> */}
         {/* <Pricing /> */}
         {/* <Faqs /> */}
