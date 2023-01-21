@@ -3,38 +3,6 @@ import clsx from "clsx";
 import { Link } from "@remix-run/react";
 import React from "react";
 
-// type Variant = "solid" | "outline";
-// type VariantStyles = {
-//     [key in Variant]: Record<string, string>;
-// }
-
-interface QueryOptions {
-  throwIfNotFound: boolean;
-}
-type QueryResult<Options extends QueryOptions> =
-  Options["throwIfNotFound"] extends true ? string : string | undefined;
-
-const qo1 = { throwIfNotFound: true };
-const qo2 = { throwIfNotFound: true } as const;
-type QR1 = QueryResult<QueryOptions>;
-type QR2 = QueryResult<{ throwIfNotFound: true }>;
-type QR3 = QueryResult<typeof qo1>;
-type QR4 = QueryResult<typeof qo2>;
-
-type T = string & number;
-
-declare function retrieve<Options extends QueryOptions>(
-  key: string,
-  options?: Options
-): Promise<QueryResult<Options>>;
-
-// Returned type: string | undefined
-await retrieve("Biruté Galdikas");
-// Returned type: string | undefined
-await retrieve("Jane Goodall", { throwIfNotFound: Math.random() > 0.5 });
-// Returned type: string
-await retrieve("Dian Fossey", { throwIfNotFound: true });
-
 const baseStyles = {
   solid:
     "inline-flex justify-center rounded-lg py-2 px-3 text-sm font-semibold outline-2 outline-offset-2 transition-colors",
@@ -50,76 +18,76 @@ const variantStyles = {
     gray: "bg-gray-800 text-white hover:bg-gray-900 active:bg-gray-800 active:text-white/80",
   },
   outline: {
-    gray: "border-gray-300 text-gray-700 hover:border-gray-400 active:bg-gray-100 active:text-gray-700/80",
+    pink: "border-gray-300 text-gray-700 hover:border-gray-400 active:bg-gray-100 active:text-gray-700/80",
   },
 };
 
-// interface CustomButtonProps {
-//   variant: keyof typeof variantStyles;
-//   color:
-//     | keyof (typeof variantStyles)["solid"]
-//     | keyof (typeof variantStyles)["outline"];
-//   href: string;
-// }
+type TProps<
+  Variant extends keyof typeof variantStyles,
+  Color extends keyof (typeof variantStyles)[Variant]
+> = {
+  variant?: Variant;
+  color?: Color;
+};
 
-// type ButtonProps = CustomButtonProps &
-//   Omit<React.ComponentPropsWithoutRef<"button">, keyof CustomButtonProps>;
+function foo<
+  // Variant extends keyof typeof variantStyles = "solid",
+  Variant extends keyof typeof variantStyles,
+  // Color extends keyof (typeof variantStyles)[Variant] = "gray"
+  Color extends keyof (typeof variantStyles)[Variant]
+>({ variant, color }: TProps<Variant, Color>) {
+  console.log({ variant, color });
+}
 
-// export const Button = forwardRef(function Button(
-//   { variant = "solid", color = "gray", className, href, ...props }: ButtonProps,
-//   ref
-// ) {
-//   className = clsx(
-//     baseStyles[variant],
-//     variantStyles[variant][color],
-//     className
-//   );
-//   const v = variantStyles[variant];
+foo({});
+foo({ variant: "solid", color: "gray" });
+foo({ variant: "solid", color: "cyan" });
+foo({ variant: "outline", color: "gray" });
+foo({ variant: "outline", color: "cyan" });
+foo({ color: "cyan" });
+foo({ color: "gray" });
 
-//   return href ? (
-//     <Link ref={ref} href={href} className={className} {...props} />
-//   ) : (
-//     <button ref={ref} className={className} {...props} />
-//   );
-// });
-
-type LinkRef = NonNullable<Parameters<typeof Link>[0]["ref"]>;
-
-type ButtonRef<HrefType extends string | undefined> = HrefType extends string
-  ? LinkRef
+type ButtonRef<Href extends string | undefined> = Href extends string
+  ? Parameters<typeof Link>[0]["ref"]
   : React.ComponentPropsWithRef<"button">["ref"];
 
 type ButtonProps<
-  HrefType extends string | undefined = undefined,
+  Href extends string | undefined,
+  Variant extends keyof typeof variantStyles,
+  Color extends keyof (typeof variantStyles)[Variant],
   Props = {
-    variant?: keyof typeof variantStyles;
-    color?: string;
-    className: string;
-    href?: HrefType;
+    href?: Href;
+    variant?: Variant;
+    color?: Color;
+    className?: string;
   },
-  Component = HrefType extends string
+  Component = Href extends string
     ? React.ComponentPropsWithoutRef<"button">
     : typeof Link
 > = React.PropsWithChildren<Props> &
-  Omit<Component, keyof Props> & { ref?: ButtonRef<HrefType> };
+  Omit<Component, keyof Props> & { ref?: ButtonRef<Href> };
 
 export const Button = forwardRef(function Button<
-  HrefType extends string | undefined
+  Href extends string | undefined,
+  Variant extends keyof typeof variantStyles,
+  Color extends keyof (typeof variantStyles)[Variant],
 >(
   {
-    variant = "solid",
-    color = "gray",
+    // variant = "solid",
+    variant,
+    // color = "gray",
+    color,
     className,
     href,
     ...props
-  }: ButtonProps<HrefType>,
-  ref?: ButtonRef<HrefType>
+  }: ButtonProps<Href, Variant, Color>,
+  ref?: ButtonRef<Href>
 ) {
-  className = clsx(
-    baseStyles[variant],
-    variantStyles[variant][color],
-    className
-  );
+  // className = clsx(
+  //   baseStyles[variant],
+  //   variantStyles[variant][color],
+  //   className
+  // );
 
   return href ? (
     // eslint-disable-next-line jsx-a11y/anchor-has-content
@@ -137,3 +105,13 @@ export const Button = forwardRef(function Button<
     />
   );
 });
+
+function usage() {
+  return (
+    <>
+      <Button variant="solid" color="gray" />
+      <Button variant="solid" color="cyan" />
+      <Button variant="outline" color="gray" />
+    </>
+  );
+}
