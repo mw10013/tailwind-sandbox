@@ -61,8 +61,8 @@ foo({ color: "gray" });
 
 type ButtonRef<Href extends string | undefined> = Href extends string
   ? Parameters<typeof Link>[0]["ref"]
-  // : React.ComponentPropsWithRef<"button">["ref"];
-  : React.Ref<HTMLButtonElement>;
+  : // : React.ComponentPropsWithRef<"button">["ref"];
+    React.Ref<HTMLButtonElement>;
 
 type ButtonProps<
   Href extends string | undefined,
@@ -112,6 +112,37 @@ export const Button = forwardRef(function Button<
     />
   );
 });
+
+// function ButtonImpl<
+//   Href extends string | undefined
+//   // Variant extends keyof typeof variantStyles,
+//   // Color extends keyof (typeof variantStyles)[Variant]
+// >({ variant = "solid", color = "gray", className, href, ...props }: ButtonProps<Href>, ref?: ButtonRef<Href>) {
+//   className = clsx(
+//     baseStyles[variant],
+//     // @ts-ignore TODO: fix types
+//     variantStyles[variant][color],
+//     className
+//   );
+
+//   return href ? (
+//     // eslint-disable-next-line jsx-a11y/anchor-has-content
+//     <Link
+//       ref={ref as ButtonRef<string>}
+//       to={href}
+//       className={className}
+//       {...props}
+//     />
+//   ) : (
+//     <button
+//       ref={ref as ButtonRef<undefined>}
+//       className={className}
+//       {...props}
+//     />
+//   );
+// }
+
+// export const Button = React.forwardRef(ButtonImpl) as typeof ButtonImpl;
 
 function usage() {
   return (
