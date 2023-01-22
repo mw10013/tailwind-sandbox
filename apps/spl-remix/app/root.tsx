@@ -110,7 +110,7 @@ export default function App() {
             {/* <Component previousPathname={previousPathname} {...pageProps} /> */}
             <Outlet context={context} />
           </main>
-          {/* <Footer /> */}
+          <Footer />
         </div>
         <ScrollRestoration />
         <Scripts />
