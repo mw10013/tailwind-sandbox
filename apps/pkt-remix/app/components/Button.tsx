@@ -50,6 +50,8 @@ foo({ color: "gray" });
 
 // function forwardRef<T, P = {}>(render: ForwardRefRenderFunction<T, P>): ForwardRefExoticComponent<PropsWithoutRef<P> & RefAttributes<T>>;
 
+// https://eskridge.dev/articles/typescript-issues
+// https://www.erikverweij.dev/blog/making-your-components-extensible-with-typescript/
 // https://fettblog.eu/typescript-react-generic-forward-refs/
 // declare module "react" {
 //   function forwardRef<T, P = {}>(
@@ -59,7 +61,8 @@ foo({ color: "gray" });
 
 type ButtonRef<Href extends string | undefined> = Href extends string
   ? Parameters<typeof Link>[0]["ref"]
-  : React.ComponentPropsWithRef<"button">["ref"];
+  // : React.ComponentPropsWithRef<"button">["ref"];
+  : React.Ref<HTMLButtonElement>;
 
 type ButtonProps<
   Href extends string | undefined,
@@ -76,8 +79,8 @@ type ButtonProps<
     className?: string;
   },
   Component = Href extends string
-    ? React.ComponentPropsWithoutRef<"button">
-    : typeof Link
+    ? typeof Link
+    : React.ComponentPropsWithoutRef<"button">
 > = React.PropsWithChildren<Props> &
   Omit<Component, keyof Props> & { ref?: ButtonRef<Href> };
 
@@ -116,6 +119,10 @@ function usage() {
       <Button variant="solid" color="gray" />
       <Button variant="solid" color="cyan" />
       <Button variant="outline" color="gray" />
+      <Button disabled variant="outline" color="gray" />
+      <Button type="submit" color="cyan" className="mt-8 w-full">
+        Sign in to account
+      </Button>
     </>
   );
 }
