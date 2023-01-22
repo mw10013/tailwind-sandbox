@@ -174,7 +174,6 @@ importers:
       '@remix-run/react': ^1.11.1
       '@remix-run/serve': ^1.11.1
       '@remix-run/vercel': ^1.11.1
-      '@tailwindcss/forms': 0.5.3
       '@tailwindcss/typography': 0.5.9
       '@testing-library/jest-dom': ^5.16.5
       '@testing-library/react': ^13.4.0
@@ -225,7 +224,6 @@ importers:
       '@remix-run/dev': 1.11.1_kbsvfewv4jwrmiyw4esgzjg2te
       '@remix-run/eslint-config': 1.11.1_wvykjhgtukofhefoe5m2qcm46i
       '@remix-run/serve': 1.11.1_biqbaboplfbrettd7655fr4n2y
-      '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
       '@tailwindcss/typography': 0.5.9_tailwindcss@3.2.4
       '@testing-library/jest-dom': 5.16.5
       '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
