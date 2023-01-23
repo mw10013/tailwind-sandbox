@@ -24,15 +24,21 @@ import { getAllArticles } from "@/lib/getAllArticles";
 import { formatDate } from "@/lib/formatDate";
 import React from "react";
 import { Link } from "@remix-run/react";
-import type { V2_MetaFunction } from "@remix-run/node";
+import type { LoaderFunction, V2_MetaFunction } from "@remix-run/node";
 
 export const meta: V2_MetaFunction = () => {
   return [
-    { title: "Spencer Sharp - Software designer, founder, and amateur astronaut" },
-    { name: "description", content: "I’m Spencer, a software designer and entrepreneur based in New York City. I’m the founder and CEO of Planetaria, where we develop technologies that empower regular people to explore space on their own terms." },
+    {
+      title:
+        "Spencer Sharp - Software designer, founder, and amateur astronaut",
+    },
+    {
+      name: "description",
+      content:
+        "I’m Spencer, a software designer and entrepreneur based in New York City. I’m the founder and CEO of Planetaria, where we develop technologies that empower regular people to explore space on their own terms.",
+    },
   ];
 };
-
 
 function MailIcon(props: React.ComponentPropsWithoutRef<"svg">) {
   return (
@@ -96,9 +102,7 @@ function ArrowDownIcon(props: React.ComponentPropsWithoutRef<"svg">) {
 function Article({ article }) {
   return (
     <Card as="article">
-      <Card.Title to={`/articles/${article.slug}`}>
-        {article.title}
-      </Card.Title>
+      <Card.Title to={`/articles/${article.slug}`}>{article.title}</Card.Title>
       <Card.Eyebrow as="time" dateTime={article.date} decorate>
         {formatDate(article.date)}
       </Card.Eyebrow>
@@ -108,10 +112,12 @@ function Article({ article }) {
   );
 }
 
-function SocialLink({ icon: Icon, ...props }:
-  React.ComponentPropsWithoutRef<typeof Link> & {
-    icon: (props: React.ComponentPropsWithoutRef<"svg">) => JSX.Element
-  }) {
+function SocialLink({
+  icon: Icon,
+  ...props
+}: React.ComponentPropsWithoutRef<typeof Link> & {
+  icon: (props: React.ComponentPropsWithoutRef<"svg">) => JSX.Element;
+}) {
   return (
     <Link className="group -m-1 p-1" {...props}>
       <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
@@ -320,16 +326,14 @@ export default function Home({ articles }) {
   );
 }
 
-export async function getStaticProps() {
-  if (process.env.NODE_ENV === "production") {
-    await generateRssFeed();
-  }
+export const loader = (async () => {
+  // if (process.env.NODE_ENV === "production") {
+  //   await generateRssFeed();
+  // }
 
   return {
-    props: {
-      articles: (await getAllArticles())
-        .slice(0, 4)
-        .map(({ component, ...meta }) => meta),
-    },
+    articles: (await getAllArticles())
+      .slice(0, 4)
+      .map(({ component, ...meta }) => meta),
   };
-}
+}) satisfies LoaderFunction;
