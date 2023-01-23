@@ -19,12 +19,11 @@ import logoAirbnb from "@/images/logos/airbnb.svg";
 import logoFacebook from "@/images/logos/facebook.svg";
 import logoPlanetaria from "@/images/logos/planetaria.svg";
 import logoStarbucks from "@/images/logos/starbucks.svg";
-import { generateRssFeed } from "@/lib/generateRssFeed";
 import { getAllArticles } from "@/lib/getAllArticles";
 import { formatDate } from "@/lib/formatDate";
 import React from "react";
-import { Link } from "@remix-run/react";
-import type { LoaderFunction, V2_MetaFunction } from "@remix-run/node";
+import { Link, useLoaderData } from "@remix-run/react";
+import { json, LoaderFunction, V2_MetaFunction } from "@remix-run/node";
 
 export const meta: V2_MetaFunction = () => {
   return [
@@ -99,7 +98,7 @@ function ArrowDownIcon(props: React.ComponentPropsWithoutRef<"svg">) {
   );
 }
 
-function Article({ article }) {
+function Article({ article }: { article: any }) {
   return (
     <Card as="article">
       <Card.Title to={`/articles/${article.slug}`}>{article.title}</Card.Title>
@@ -213,16 +212,24 @@ function Resume() {
               <dt className="sr-only">Date</dt>
               <dd
                 className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-                aria-label={`${role.start.label ?? role.start} until ${
-                  role.end.label ?? role.end
+                // aria-label={`${role.start.label ?? role.start} until ${
+                //   role.end.label ?? role.end
+                aria-label={`${role.start} until ${
+                  typeof role.end === "string" ? role.end : role.end.label
                 }`}
               >
-                <time dateTime={role.start.dateTime ?? role.start}>
-                  {role.start.label ?? role.start}
-                </time>{" "}
+                {/* <time dateTime={role.start.dateTime ?? role.start}>
+                  {role.start.label ?? role.start} */}
+                <time dateTime={role.start}>{role.start}</time>{" "}
                 <span aria-hidden="true">—</span>{" "}
-                <time dateTime={role.end.dateTime ?? role.end}>
-                  {role.end.label ?? role.end}
+                {/* <time dateTime={role.end.dateTime ?? role.end}>
+                  {role.end.label ?? role.end} */}
+                <time
+                  dateTime={
+                    typeof role.end === "string" ? role.end : role.end.label
+                  }
+                >
+                  {typeof role.end === "string" ? role.end : role.end.label}
                 </time>
               </dd>
             </dl>
@@ -251,7 +258,8 @@ function Photos() {
       <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
         {[image1, image2, image3, image4, image5].map((image, imageIndex) => (
           <div
-            key={image.src}
+            // key={image.src}
+            key={image}
             className={clsx(
               "relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl",
               rotations[imageIndex % rotations.length]
@@ -270,7 +278,8 @@ function Photos() {
   );
 }
 
-export default function Home({ articles }) {
+export default function Home() {
+  const { articles } = useLoaderData<typeof loader>();
   return (
     <>
       <Container className="mt-9">
@@ -312,7 +321,7 @@ export default function Home({ articles }) {
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
-            {articles.map((article) => (
+            {articles.map((article: any) => (
               <Article key={article.slug} article={article} />
             ))}
           </div>
@@ -331,9 +340,10 @@ export const loader = (async () => {
   //   await generateRssFeed();
   // }
 
-  return {
-    articles: (await getAllArticles())
-      .slice(0, 4)
-      .map(({ component, ...meta }) => meta),
-  };
+  return json({
+    // articles: (await getAllArticles())
+    //   .slice(0, 4)
+    //   .map(({ component, ...meta }) => meta),
+    articles: [],
+  });
 }) satisfies LoaderFunction;
