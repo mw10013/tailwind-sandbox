@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Image from 'next/image'
+import {Image} from '@/components/Image'
 import { Tab } from '@headlessui/react'
 import clsx from 'clsx'
 
@@ -43,7 +43,7 @@ export function PrimaryFeatures() {
   useEffect(() => {
     let lgMediaQuery = window.matchMedia('(min-width: 1024px)')
 
-    function onMediaQueryChange({ matches }) {
+    function onMediaQueryChange({ matches }: { matches: any}) {
       setTabOrientation(matches ? 'vertical' : 'horizontal')
     }
 
