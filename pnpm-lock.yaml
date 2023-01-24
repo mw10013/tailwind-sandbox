@@ -115,6 +115,39 @@ importers:
       typescript: 4.9.4
       vitest: 0.27.3_jsdom@21.0.0
 
+  apps/sal-next:
+    specifiers:
+      '@headlessui/react': ^1.7.2
+      '@tailwindcss/forms': ^0.5.3
+      autoprefixer: ^10.4.12
+      clsx: ^1.2.1
+      eslint: 8.26.0
+      eslint-config-next: 13.0.2
+      focus-visible: ^5.2.0
+      next: 13.0.2
+      postcss-focus-visible: ^6.0.4
+      prettier: ^2.7.1
+      prettier-plugin-tailwindcss: ^0.1.13
+      react: 18.2.0
+      react-dom: 18.2.0
+      tailwindcss: ^3.2.1
+    dependencies:
+      '@headlessui/react': 1.7.7_biqbaboplfbrettd7655fr4n2y
+      '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
+      autoprefixer: 10.4.13
+      clsx: 1.2.1
+      focus-visible: 5.2.0
+      next: 13.0.2_biqbaboplfbrettd7655fr4n2y
+      postcss-focus-visible: 6.0.4
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      tailwindcss: 3.2.4
+    devDependencies:
+      eslint: 8.26.0
+      eslint-config-next: 13.0.2_eslint@8.26.0
+      prettier: 2.8.3
+      prettier-plugin-tailwindcss: 0.1.13_prettier@2.8.3
+
   apps/spl-next:
     specifiers:
       '@headlessui/react': ^1.7.2
@@ -5735,7 +5768,7 @@ packages:
       imurmurhash: 0.1.4
       is-glob: 4.0.3
       is-path-inside: 3.0.3
-      js-sdsl: 4.2.0
+      js-sdsl: 4.3.0
       js-yaml: 4.1.0
       json-stable-stringify-without-jsonify: 1.0.1
       levn: 0.4.1
@@ -7523,10 +7556,6 @@ packages:
       picomatch: 2.3.1
     dev: true
 
-  /js-sdsl/4.2.0:
-    resolution: {integrity: sha512-dyBIzQBDkCqCu+0upx25Y2jGdbTGxE9fshMsCdK0ViOongpV+n5tXRcZY9v7CaVQ79AGS9KA1KHtojxiM7aXSQ==}
-    dev: true
-
   /js-sdsl/4.3.0:
     resolution: {integrity: sha512-mifzlm2+5nZ+lEcLJMoBK0/IH/bDg8XnJfd/Wq6IP+xoCjLZsTOnV2QpxlVbX9bMnkl5PdEjNtBJ9Cj1NjifhQ==}
     dev: true
@@ -8875,7 +8904,7 @@ packages:
     dependencies:
       '@next/env': 13.0.2
       '@swc/helpers': 0.4.11
-      caniuse-lite: 1.0.30001445
+      caniuse-lite: 1.0.30001446
       postcss: 8.4.14
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
