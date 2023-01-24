@@ -23,7 +23,8 @@ import { getAllArticles } from "@/lib/getAllArticles";
 import { formatDate } from "@/lib/formatDate";
 import React from "react";
 import { Link, useLoaderData } from "@remix-run/react";
-import { json, LoaderFunction, V2_MetaFunction } from "@remix-run/node";
+import type { LoaderFunction, V2_MetaFunction } from "@remix-run/node";
+import { json } from "@remix-run/node";
 
 export const meta: V2_MetaFunction = () => {
   return [

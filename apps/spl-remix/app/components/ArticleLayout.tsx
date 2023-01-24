@@ -1,11 +1,10 @@
-import Head from 'next/head'
-import { useRouter } from 'next/router'
 
 import { Container } from '@/components/Container'
 import { formatDate } from '@/lib/formatDate'
 import { Prose } from '@/components/Prose'
+import React from 'react'
 
-function ArrowLeftIcon(props) {
+function ArrowLeftIcon(props: React.ComponentPropsWithoutRef<"svg">) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <path
@@ -32,10 +31,10 @@ export function ArticleLayout({
 
   return (
     <>
-      <Head>
+      {/* <Head>
         <title>{`${meta.title} - Spencer Sharp`}</title>
         <meta name="description" content={meta.description} />
-      </Head>
+      </Head> */}
       <Container className="mt-16 lg:mt-32">
         <div className="xl:relative">
           <div className="mx-auto max-w-2xl">
