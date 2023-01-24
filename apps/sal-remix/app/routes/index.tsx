@@ -1,37 +1,39 @@
-import {
-  PolymorphicButton,
-  PolymorphicText,
-} from "@/components/PolymorphicComponent";
-import { Link } from "@remix-run/react";
+import { CallToAction } from "@/components/CallToAction";
+import { Faqs } from "@/components/Faqs";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
+import { Hero } from "@/components/Hero";
+import { Pricing } from "@/components/Pricing";
+import { PrimaryFeatures } from "@/components/PrimaryFeatures";
+import { SecondaryFeatures } from "@/components/SecondaryFeatures";
+import { Testimonials } from "@/components/Testimonials";
+import type { V2_MetaFunction } from "@remix-run/node";
 
-export default function Index() {
-  // const { session } = useOutletContext<ContextType>();
+export const meta: V2_MetaFunction = () => {
+  return [
+    { title: "TaxPal - Accounting made simple for small businesses" },
+    {
+      name: "description",
+      content:
+        "Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited.",
+    },
+  ];
+};
+
+export default function Home() {
   return (
-    <div className="mt-8 max-w-sm mx-auto font-bold text-lg">
-      <PolymorphicText as="div" color="indigo" className="text-4xl">
-        Remix Template
-      </PolymorphicText>
-      <div className="flex flex-col w-32 mx-auto gap-4 mt-8">
-        <PolymorphicButton>Default</PolymorphicButton>
-        <PolymorphicButton as="button" color="cyan" onClick={() => alert("click")}>
-          Button
-        </PolymorphicButton>
-        <PolymorphicButton as={Link} color="cyan" to="#link">
-          Link
-        </PolymorphicButton>
-        <PolymorphicButton as="button" variant="outline"onClick={() => alert("click")}>
-          Button
-        </PolymorphicButton>
-        <PolymorphicButton as={Link} variant="outline"to="#link">
-          Link
-        </PolymorphicButton>
-        <PolymorphicButton as="button" variant="outline" color="gray" className="py-8" onClick={() => alert("click")}>
-          Button
-        </PolymorphicButton>
-        <PolymorphicButton as={Link} variant="outline" color="gray" className="py-8"  to="#link">
-          Link
-        </PolymorphicButton>
-      </div>
-    </div>
+    <>
+      <Header />
+      <main>
+        {/* <Hero /> */}
+        {/* <PrimaryFeatures /> */}
+        {/* <SecondaryFeatures /> */}
+        <CallToAction />
+        {/* <Testimonials /> */}
+        {/* <Pricing /> */}
+        <Faqs />
+      </main>
+      <Footer />
+    </>
   );
 }

@@ -1,4 +1,4 @@
-import type { LinksFunction, V2_MetaFunction } from "@remix-run/node";
+import type { LinksFunction } from "@remix-run/node";
 import {
   Links,
   LiveReload,
@@ -21,27 +21,33 @@ export const links: LinksFunction = () => {
   return [{ rel: "stylesheet", href: tailwindStylesheetUrl }];
 };
 
-export const meta: V2_MetaFunction = () => {
-  return [
-    { title: "Remix Template" },
-    { name: "description", content: "Template for remix and tailwind." },
-  ];
-};
-
 export default function App() {
   // const context: ContextType = {};
 
   // <div> with min-h-full help register layout correctly.
   // Mimics nextjs: #__next { min-height: 100%; }
   return (
-    <html lang="en">
+    <html
+      className="h-full scroll-smooth bg-white antialiased [font-feature-settings:'ss01']"
+      lang="en"
+    >
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Lexend:wght@400;500&display=swap"
+        />
       </head>
-      <body>
+      <body className="flex h-full flex-col">
         <div className="min-h-full">
           {/* <Outlet context={context} /> */}
           <Outlet />

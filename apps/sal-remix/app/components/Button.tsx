@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { Link } from '@remix-run/react'
 import clsx from 'clsx'
 
 const baseStyles = {
@@ -30,15 +30,23 @@ export function Button({
   className,
   href,
   ...props
+}: {
+  variant?: keyof typeof variantStyles;
+  color?: keyof typeof variantStyles["solid"] | keyof typeof variantStyles["outline"];
+  className?: string;
+  href?: string;
+  [key: string]: any
 }) {
   className = clsx(
     baseStyles[variant],
+    // @ts-ignore
     variantStyles[variant][color],
     className
   )
 
   return href ? (
-    <Link href={href} className={className} {...props} />
+    // eslint-disable-next-line jsx-a11y/anchor-has-content
+    <Link to={href} className={className} {...props} />
   ) : (
     <button className={className} {...props} />
   )

@@ -1,8 +1,7 @@
-import Link from 'next/link'
-
-import { Container } from '@/components/Container'
-import { Logo } from '@/components/Logo'
-import { NavLink } from '@/components/NavLink'
+import { Container } from "@/components/Container";
+import { Logo } from "@/components/Logo";
+import { NavLink } from "@/components/NavLink";
+import { Link } from "@remix-run/react";
 
 export function Footer() {
   return (
@@ -21,7 +20,7 @@ export function Footer() {
         <div className="flex flex-col items-center border-t border-slate-400/10 py-10 sm:flex-row-reverse sm:justify-between">
           <div className="flex gap-x-6">
             <Link
-              href="https://twitter.com"
+              to="https://twitter.com"
               className="group"
               aria-label="TaxPal on Twitter"
             >
@@ -33,7 +32,7 @@ export function Footer() {
               </svg>
             </Link>
             <Link
-              href="https://github.com"
+              to="https://github.com"
               className="group"
               aria-label="TaxPal on GitHub"
             >
@@ -52,5 +51,5 @@ export function Footer() {
         </div>
       </Container>
     </footer>
-  )
+  );
 }
